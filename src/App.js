@@ -6,6 +6,7 @@ import { ListArea } from "./components/ListArea";
 
 const App = () => {
   const [taskList, setTaskList] = useState([]);
+  const total = taskList.reduce((acc, item) => acc + +item.hr, 0);
 
   const addTask = (task) => {
     setTaskList([...taskList, task]);
@@ -32,7 +33,7 @@ const App = () => {
         <AddTaskForm addTask={addTask} />
         <hr />
         {/* list component */}
-        <ListArea taskList={taskList} switchTask={switchTask} />
+        <ListArea taskList={taskList} switchTask={switchTask} total={total} />
       </Container>
     </div>
   );
