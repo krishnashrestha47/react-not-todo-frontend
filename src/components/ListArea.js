@@ -2,12 +2,19 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { TaskList } from "./TaskList";
 
-export const ListArea = () => {
+export const ListArea = ({ taskList }) => {
+  const entryList = taskList.filter(({ type }) => type === "entry");
+
   return (
     <div className="list-area">
       <Row>
         <Col>
-          <TaskList tableColor="dark" arrow={"right"} title={"Task List"} />
+          <TaskList
+            tableColor="dark"
+            arrow={"right"}
+            title={"Task List"}
+            list={entryList}
+          />
         </Col>
         <Col>
           <TaskList tableColor="warning" title={"Bad Task List"} />
@@ -16,7 +23,9 @@ export const ListArea = () => {
           </div>
         </Col>
       </Row>
-      <div className="fw-bold">Total time allocated is 55 hrs/wk</div>
+      <div className="fw-bold text-white">
+        Total time allocated is 55 hrs/wk
+      </div>
     </div>
   );
 };
