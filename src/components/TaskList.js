@@ -1,7 +1,13 @@
 import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
-export const TaskList = ({ title, tableColor, arrow, list = [] }) => {
+export const TaskList = ({
+  title,
+  tableColor,
+  arrow,
+  list = [],
+  switchTask,
+}) => {
   return (
     <div>
       <h2 className="text-center">{title}</h2>
@@ -30,7 +36,10 @@ export const TaskList = ({ title, tableColor, arrow, list = [] }) => {
                   </td>
                   <td>
                     {arrow === "right" ? (
-                      <Button variant="success">
+                      <Button
+                        onClick={() => switchTask(item.id, "bad")}
+                        variant="success"
+                      >
                         <i className="fa-solid fa-arrow-right btn-sm"></i>
                       </Button>
                     ) : (

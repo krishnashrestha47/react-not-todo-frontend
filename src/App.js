@@ -11,6 +11,17 @@ const App = () => {
     setTaskList([...taskList, task]);
   };
 
+  const switchTask = (id, type) => {
+    console.log(id, type);
+    const switchedArg = taskList.map((item, index) => {
+      if (item.id === id) {
+        item.type = type;
+      }
+      return item;
+    });
+    setTaskList(switchedArg);
+  };
+
   console.log(taskList);
 
   return (
@@ -21,7 +32,7 @@ const App = () => {
         <AddTaskForm addTask={addTask} />
         <hr />
         {/* list component */}
-        <ListArea taskList={taskList} />
+        <ListArea taskList={taskList} switchTask={switchTask} />
       </Container>
     </div>
   );
