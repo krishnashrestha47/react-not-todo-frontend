@@ -7,12 +7,16 @@ export const ListArea = () => {
     <div className="list-area">
       <Row>
         <Col>
-          <TaskList />
+          <TaskList tableColor="dark" arrow={"right"} title={"Task List"} />
         </Col>
         <Col>
-          <TaskList />
+          <TaskList tableColor="warning" title={"Bad Task List"} />
+          <div className="text-end text-warning fw-bold">
+            You could have saved 40 hrs !!
+          </div>
         </Col>
       </Row>
+      <div className="fw-bold">Total time allocated is 55 hrs/wk</div>
     </div>
   );
 };

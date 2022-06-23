@@ -12,7 +12,7 @@ export const AddTaskForm = () => {
           <Form.Control placeholder="10" required type="number" />
         </Col>
         <Col md="2">
-          <Button type="submit" variant="info">
+          <Button type="submit" variant="dark">
             Add Task
           </Button>
         </Col>
