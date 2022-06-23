@@ -43,7 +43,10 @@ export const TaskList = ({
                         <i className="fa-solid fa-arrow-right btn-sm"></i>
                       </Button>
                     ) : (
-                      <Button variant="danger">
+                      <Button
+                        variant="danger"
+                        onClick={() => switchTask(item.id, "entry")}
+                      >
                         <i className="fa-solid fa-arrow-left btn-sm"></i>
                       </Button>
                     )}

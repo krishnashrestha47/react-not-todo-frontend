@@ -23,6 +23,7 @@ export const ListArea = ({ taskList, switchTask }) => {
             tableColor="warning"
             title={"Bad Task List"}
             list={badList}
+            switchTask={switchTask}
           />
           <div className="text-end text-warning fw-bold">
             You could have saved 40 hrs !!
