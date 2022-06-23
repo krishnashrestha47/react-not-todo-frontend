@@ -4,14 +4,14 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 export const AddTaskForm = () => {
   return (
     <Form>
-      <Row className="gap-2">
-        <Col className="col-12 col-md-6">
+      <Row className="gap-2 d-flex justify-content-center">
+        <Col md="5">
           <Form.Control placeholder="Task name" required />
         </Col>
-        <Col className="col-12 col-md-3">
+        <Col md="4">
           <Form.Control placeholder="10" required type="number" />
         </Col>
-        <Col className="col-12 col-md-2">
+        <Col md="2">
           <Button type="submit" variant="info">
             Add Task
           </Button>
