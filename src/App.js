@@ -4,11 +4,15 @@ import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
 
+const wklyHr = 7 * 24;
 const App = () => {
   const [taskList, setTaskList] = useState([]);
   const total = taskList.reduce((acc, item) => acc + +item.hr, 0);
 
   const addTask = (task) => {
+    if (total + +task.hr > wklyHr) {
+      return alert("Your input hour exceeds the allowed hours ");
+    }
     setTaskList([...taskList, task]);
   };
 
