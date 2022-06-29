@@ -5,9 +5,28 @@ export const TaskList = ({
   title,
   tableColor,
   arrow,
+  name,
+  ids,
   list = [],
   switchTask,
+  handleOnCheck,
 }) => {
+  //   if (value === "all") {
+  //     if (checked) {
+  //       const allIds = list.map((item) => item.id);
+  //       setIds(allIds);
+  //     } else {
+  //       setIds([]);
+  //     }
+  //     return;
+  //   }
+  //   //individual check
+  //   checked
+  //     ? setIds([...ids, value])
+  //     : setIds(ids.filter((id) => id !== value));
+  // };
+  // console.log(ids);
+
   return (
     <div>
       <h2 className="text-center">{title}</h2>
@@ -16,7 +35,7 @@ export const TaskList = ({
           <thead>
             <tr>
               <th>
-                <Form.Check type="checkbox" />
+                <Form.Check value={name} onChange={handleOnCheck} />
               </th>
               <th>Task</th>
               <th>Hour</th>
@@ -28,7 +47,10 @@ export const TaskList = ({
               return (
                 <tr>
                   <td>
-                    <Form.Check type="checkbox" />
+                    <Form.Check
+                      onChange={handleOnCheck}
+                      checked={ids.includes(item.id)}
+                    />
                   </td>
                   <td>{item.task}</td>
                   <td>
@@ -56,6 +78,13 @@ export const TaskList = ({
             })}
           </tbody>
         </Table>
+        <div>
+          {ids.length > 0 && (
+            <Button variant="danger" className="mt-2">
+              Delete
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

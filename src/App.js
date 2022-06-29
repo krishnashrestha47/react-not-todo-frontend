@@ -7,6 +7,8 @@ import { ListArea } from "./components/ListArea";
 const wklyHr = 7 * 24;
 const App = () => {
   const [taskList, setTaskList] = useState([]);
+  const [ids, setIds] = useState([]);
+
   const total = taskList.reduce((acc, item) => acc + +item.hr, 0);
 
   const addTask = (task) => {
@@ -29,6 +31,31 @@ const App = () => {
 
   console.log(taskList);
 
+  const handleOnCheck = (e) => {
+    const { checked, value, name } = e.target;
+    console.log(checked, value, name);
+
+    if (value === "entry" || value === "bad") {
+      let toDeleteIds = [];
+      taskList.forEach((item) => {
+        if (item.type === value) {
+          toDeleteIds.push(item.id);
+        }
+      });
+
+      //if ticked add all ids in array, or take them out
+      if (checked) {
+        // add all entry list ids
+        setIds([...ids, ...toDeleteIds]);
+      } else {
+        const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
+        setIds(tempArgs);
+      }
+    }
+  };
+
+  console.log(ids);
+
   return (
     <div className="wrapper">
       <Container>
@@ -37,7 +64,13 @@ const App = () => {
         <AddTaskForm addTask={addTask} />
         <hr />
         {/* list component */}
-        <ListArea taskList={taskList} switchTask={switchTask} total={total} />
+        <ListArea
+          ids={ids}
+          taskList={taskList}
+          switchTask={switchTask}
+          total={total}
+          handleOnCheck={handleOnCheck}
+        />
       </Container>
     </div>
   );
