@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
@@ -54,7 +54,12 @@ const App = () => {
     }
   };
 
-  console.log(ids);
+  const handleOnDelete = () => {
+    if (!window.confirm("Are you sure to delete?")) return;
+    const tempArg = taskList.filter((item) => !ids.includes(item.id));
+    setTaskList(tempArg);
+    setIds([]);
+  };
 
   return (
     <div className="wrapper">
@@ -71,6 +76,13 @@ const App = () => {
           total={total}
           handleOnCheck={handleOnCheck}
         />
+        <div className="mt-2">
+          {ids.length > 0 && (
+            <Button variant="danger" onClick={handleOnDelete}>
+              Delete
+            </Button>
+          )}
+        </div>
       </Container>
     </div>
   );

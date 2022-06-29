@@ -78,13 +78,6 @@ export const TaskList = ({
             })}
           </tbody>
         </Table>
-        <div>
-          {ids.length > 0 && (
-            <Button variant="danger" className="mt-2">
-              Delete
-            </Button>
-          )}
-        </div>
       </div>
     </div>
   );
