@@ -51,6 +51,13 @@ const App = () => {
         const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
         setIds(tempArgs);
       }
+      return;
+    }
+    //individual item check
+    if (checked) {
+      setIds([...ids, value]);
+    } else {
+      setIds(ids.filter((id) => id !== value));
     }
   };
 

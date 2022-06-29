@@ -11,22 +11,6 @@ export const TaskList = ({
   switchTask,
   handleOnCheck,
 }) => {
-  //   if (value === "all") {
-  //     if (checked) {
-  //       const allIds = list.map((item) => item.id);
-  //       setIds(allIds);
-  //     } else {
-  //       setIds([]);
-  //     }
-  //     return;
-  //   }
-  //   //individual check
-  //   checked
-  //     ? setIds([...ids, value])
-  //     : setIds(ids.filter((id) => id !== value));
-  // };
-  // console.log(ids);
-
   return (
     <div>
       <h2 className="text-center">{title}</h2>
@@ -49,6 +33,7 @@ export const TaskList = ({
                   <td>
                     <Form.Check
                       onChange={handleOnCheck}
+                      value={item.id}
                       checked={ids.includes(item.id)}
                     />
                   </td>
