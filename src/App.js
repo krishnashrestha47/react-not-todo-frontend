@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
+import { fetchTasks } from "./helpers/axiosHelper";
 
 const wklyHr = 7 * 24;
 const App = () => {
   const [taskList, setTaskList] = useState([]);
   const [ids, setIds] = useState([]);
+
+  useEffect(() => {
+    getTaskFromServer();
+  }, []);
+
+  const getTaskFromServer = async () => {
+    const data = await fetchTasks();
+    data.status === "success" && setTaskList(data.result);
+  };
 
   const total = taskList.reduce((acc, item) => acc + +item.hr, 0);
 
