@@ -26,3 +26,15 @@ export const postTask = async (obj) => {
     };
   }
 };
+
+export const switchServerTask = async (obj) => {
+  try {
+    const { data } = await axios.patch(apiEP, obj);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

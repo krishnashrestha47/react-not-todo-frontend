@@ -3,7 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
-import { fetchTasks, postTask } from "./helpers/axiosHelper";
+import { fetchTasks, postTask, switchServerTask } from "./helpers/axiosHelper";
 
 const wklyHr = 7 * 24;
 const App = () => {
@@ -30,15 +30,9 @@ const App = () => {
     result.status === "success" && getTaskFromServer();
   };
 
-  const switchTask = (_id, type) => {
-    console.log(_id, type);
-    const switchedArg = taskList.map((item, index) => {
-      if (item._id === _id) {
-        item.type = type;
-      }
-      return item;
-    });
-    setTaskList(switchedArg);
+  const switchTask = async (_id, type) => {
+    const data = await switchServerTask({ _id, type });
+    data.status === "success" && getTaskFromServer();
   };
 
   console.log(taskList);
