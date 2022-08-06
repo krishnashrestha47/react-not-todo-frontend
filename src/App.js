@@ -3,7 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
-import { fetchTasks } from "./helpers/axiosHelper";
+import { fetchTasks, postTask } from "./helpers/axiosHelper";
 
 const wklyHr = 7 * 24;
 const App = () => {
@@ -21,11 +21,13 @@ const App = () => {
 
   const total = taskList.reduce((acc, item) => acc + +item.hr, 0);
 
-  const addTask = (task) => {
+  const addTask = async (task) => {
     if (total + +task.hr > wklyHr) {
       return alert("Your input hour exceeds the allowed hours ");
     }
-    setTaskList([...taskList, task]);
+    //send the data to the server
+    const result = await postTask(task);
+    result.status === "success" && getTaskFromServer();
   };
 
   const switchTask = (id, type) => {

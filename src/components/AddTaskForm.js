@@ -21,7 +21,7 @@ export const AddTaskForm = ({ addTask }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    addTask({ ...form, id: uuidv4() });
+    addTask(form);
   };
 
   return (
