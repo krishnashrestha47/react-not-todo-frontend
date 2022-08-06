@@ -3,7 +3,12 @@ import { Button, Container } from "react-bootstrap";
 import "./App.css";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { ListArea } from "./components/ListArea";
-import { fetchTasks, postTask, switchServerTask } from "./helpers/axiosHelper";
+import {
+  deleteTask,
+  fetchTasks,
+  postTask,
+  switchServerTask,
+} from "./helpers/axiosHelper";
 
 const wklyHr = 7 * 24;
 const App = () => {
@@ -45,7 +50,7 @@ const App = () => {
       let toDeleteIds = [];
       taskList.forEach((item) => {
         if (item.type === value) {
-          toDeleteIds.push(item.id);
+          toDeleteIds.push(item._id);
         }
       });
 
@@ -54,7 +59,7 @@ const App = () => {
         // add all entry list ids
         setIds([...ids, ...toDeleteIds]);
       } else {
-        const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
+        const tempArgs = ids.filter((_id) => !toDeleteIds.includes(_id));
         setIds(tempArgs);
       }
       return;
@@ -63,15 +68,18 @@ const App = () => {
     if (checked) {
       setIds([...ids, value]);
     } else {
-      setIds(ids.filter((id) => id !== value));
+      setIds(ids.filter((_id) => _id !== value));
     }
   };
 
-  const handleOnDelete = () => {
+  const handleOnDelete = async () => {
     if (!window.confirm("Are you sure to delete?")) return;
-    const tempArg = taskList.filter((item) => !ids.includes(item.id));
-    setTaskList(tempArg);
-    setIds([]);
+
+    const result = await deleteTask(ids);
+    if (result.status === "success") {
+      setIds([]);
+      getTaskFromServer();
+    }
   };
 
   return (
