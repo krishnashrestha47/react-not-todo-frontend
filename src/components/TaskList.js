@@ -33,8 +33,8 @@ export const TaskList = ({
                   <td>
                     <Form.Check
                       onChange={handleOnCheck}
-                      value={item.id}
-                      checked={ids.includes(item.id)}
+                      value={item._id}
+                      checked={ids.includes(item._id)}
                     />
                   </td>
                   <td>{item.task}</td>
@@ -44,7 +44,7 @@ export const TaskList = ({
                   <td>
                     {arrow === "right" ? (
                       <Button
-                        onClick={() => switchTask(item.id, "bad")}
+                        onClick={() => switchTask(item._id, "bad")}
                         variant="success"
                       >
                         <i className="fa-solid fa-arrow-right btn-sm"></i>
@@ -52,7 +52,7 @@ export const TaskList = ({
                     ) : (
                       <Button
                         variant="danger"
-                        onClick={() => switchTask(item.id, "entry")}
+                        onClick={() => switchTask(item._id, "entry")}
                       >
                         <i className="fa-solid fa-arrow-left btn-sm"></i>
                       </Button>

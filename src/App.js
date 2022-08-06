@@ -30,10 +30,10 @@ const App = () => {
     result.status === "success" && getTaskFromServer();
   };
 
-  const switchTask = (id, type) => {
-    console.log(id, type);
+  const switchTask = (_id, type) => {
+    console.log(_id, type);
     const switchedArg = taskList.map((item, index) => {
-      if (item.id === id) {
+      if (item._id === _id) {
         item.type = type;
       }
       return item;
